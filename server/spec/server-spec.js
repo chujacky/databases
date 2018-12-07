@@ -129,4 +129,26 @@ describe('Persistent Node Chat Server', function() {
       });
     });
   });
+
+  it('Should create a room on the DB', function(done) {
+    request({
+      method: 'POST',
+      uri: 'http://127.0.0.1:3000/classes/rooms',
+      json: { roomname: `Dickson${Date.now()}` }
+    }, function(error, response, body) {
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
+  });
+
+  it('Should create a user in the DB', function(done) {
+    request({
+      method: 'POST',
+      uri: 'http://127.0.0.1:3000/classes/users',
+      json: { username: `Esey${Date.now()}` }
+    }, function(error, response, body) {
+      expect(response.statusCode).to.equal(200);
+      done();
+    });
+  });
 });
